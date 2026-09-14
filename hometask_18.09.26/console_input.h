@@ -1,3 +1,3 @@
 #pragma once
 
-void console_input(unsigned int &user_number);
+void console_input(int &user_number);
