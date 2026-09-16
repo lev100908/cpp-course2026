@@ -19,7 +19,11 @@ std::string give_the_month(int number_of_month)
         "October",
         "December"
     };
-    if (number_of_month % 12 != 0)
+    if (number_of_month < 0)
+    {
+        return "Error";
+    }
+    else if (number_of_month % 12 != 0)
     {
         return months[(number_of_month % 12) - 1];
     }
