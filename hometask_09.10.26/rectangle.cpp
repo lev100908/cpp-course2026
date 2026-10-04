@@ -39,8 +39,8 @@ Rectangle &Rectangle::operator=(Rectangle &&other) noexcept
         base = std::move(other);
         width_ = other.width_;
         height_ = other.height_;
-        other.width_ = 0;
-        other.height_ = 0;
+        other.width_ = 0.0;
+        other.height_ = 0.0;
     }
     return *this;
 }
