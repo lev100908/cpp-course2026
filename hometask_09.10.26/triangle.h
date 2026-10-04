@@ -3,7 +3,7 @@
 #include "shape.h"
 
 
-class Triangle: public Shape
+class Triangle final: public Shape
 {
 private:
     double a_;
