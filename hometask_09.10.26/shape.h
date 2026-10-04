@@ -5,7 +5,7 @@
 class Shape
 {
 private:
-    std::string name;
+    std::string name_;
 public:
     Shape();
     Shape(std::string name);

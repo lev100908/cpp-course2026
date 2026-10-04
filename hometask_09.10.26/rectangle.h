@@ -6,8 +6,8 @@
 class Rectangle: public Shape
 {
 private:
-    double width;
-    double height;
+    double width_;
+    double height_;
 
 protected:
     // Конструктор с именем и размерами длины и высоты для Square
