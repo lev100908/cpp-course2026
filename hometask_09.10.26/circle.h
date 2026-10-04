@@ -17,7 +17,7 @@ public:
     Circle(Circle&& other) noexcept;
 
     Circle& operator=(const Circle& other);
-    Circle&& operator=(Circle&& other) noexcept;
+    Circle& operator=(Circle&& other) noexcept;
 
     double area() const override;
     double perimeter() const override;

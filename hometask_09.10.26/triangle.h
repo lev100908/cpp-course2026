@@ -19,7 +19,7 @@ public:
     Triangle(Triangle&& other) noexcept;
 
     Triangle& operator=(const Triangle& other);
-    Triangle&& operator=(Triangle&& other) noexcept;
+    Triangle& operator=(Triangle&& other) noexcept;
 
     double area() const override;
     double perimeter() const override;

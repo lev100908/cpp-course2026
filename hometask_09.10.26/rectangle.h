@@ -22,7 +22,7 @@ public:
     Rectangle(Rectangle&& other) noexcept;
 
     Rectangle& operator=(const Rectangle& other);
-    Rectangle&& operator=(Rectangle&& other) noexcept;
+    Rectangle& operator=(Rectangle&& other) noexcept;
 
     double area() const override;
     double perimeter() const override;

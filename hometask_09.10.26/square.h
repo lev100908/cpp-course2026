@@ -17,8 +17,5 @@ public:
     Square(Square&& other) noexcept;
 
     Square& operator=(const Square& other);
-    Square&& operator=(Square&& other) noexcept;
-
-    double area() const override;
-    double perimeter() const override;
+    Square& operator=(Square&& other) noexcept;
 };

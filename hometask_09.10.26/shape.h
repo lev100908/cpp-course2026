@@ -7,7 +7,6 @@ class Shape
 private:
     std::string name_;
 public:
-    Shape();
     Shape(std::string name);
 
     ~Shape();
@@ -16,7 +15,7 @@ public:
     Shape(Shape&& other) noexcept;
 
     Shape& operator=(const Shape& other);
-    Shape&& operator=(Shape&& other) noexcept;
+    Shape& operator=(Shape&& other) noexcept;
 
     const std::string& getName() const;
     virtual double area() const;
