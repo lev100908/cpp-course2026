@@ -11,7 +11,7 @@ private:
 public:
     Square(double side);
 
-    ~Square();
+    ~Square() override;
 
     Square(const Square& other);
     Square(Square&& other) noexcept;

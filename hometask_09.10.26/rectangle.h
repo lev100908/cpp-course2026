@@ -16,7 +16,7 @@ protected:
 public:
     Rectangle(double w, double h);
 
-    ~Rectangle();
+    ~Rectangle() override;
 
     Rectangle(const Rectangle& other);
     Rectangle(Rectangle&& other) noexcept;

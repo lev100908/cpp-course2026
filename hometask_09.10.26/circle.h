@@ -12,7 +12,7 @@ private:
 public:
     Circle(double radius);
 
-    ~Circle();
+    ~Circle() override;
 
     Circle(const Circle& other);
     Circle(Circle&& other) noexcept;

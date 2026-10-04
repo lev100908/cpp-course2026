@@ -9,7 +9,7 @@ private:
 public:
     Shape(std::string name);
 
-    ~Shape();
+    virtual ~Shape();
 
     Shape(const Shape& other);
     Shape(Shape&& other) noexcept;

@@ -13,7 +13,7 @@ private:
 public:
     Triangle(double a, double b, double c);
 
-    ~Triangle();
+    ~Triangle() override;
 
     Triangle(const Triangle& other);
     Triangle(Triangle&& other) noexcept;
