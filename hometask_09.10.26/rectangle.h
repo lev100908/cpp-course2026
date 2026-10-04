@@ -11,7 +11,7 @@ private:
 
 protected:
     // Конструктор с именем и размерами длины и высоты для Square
-    Rectangle(std::string name, double w, double h);
+    Rectangle(const std::string& name, double w, double h);
 
 public:
     Rectangle(double w, double h);
