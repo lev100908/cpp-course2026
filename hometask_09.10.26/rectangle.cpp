@@ -4,7 +4,7 @@
 Rectangle::Rectangle(const std::string& name, double w, double h) : Shape(name), width_(w), height_(h) 
 {
     if (w <= 0 | h <= 0)
-        throw SidesException("sides < 0");
+        throw SidesException("one side or several sides < 0");
 }
 
 Rectangle::Rectangle(double w, double h) : Rectangle("Rectangle", w, h) {}

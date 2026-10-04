@@ -15,7 +15,7 @@ public:
 class SidesException: public GeometryException
 {
 public:
-    explicit SidesException(const std::string& msg): GeometryException("Invalid side: " + msg) {}
+    explicit SidesException(const std::string& msg): GeometryException("Invalid sides: " + msg) {}
 };
 
 class RadiusException: public GeometryException
