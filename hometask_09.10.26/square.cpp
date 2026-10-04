@@ -15,6 +15,7 @@ Square &Square::operator=(const Square &other)
         Rectangle& base = *this;
         base = other;
     }
+    return *this;
 }
 
 Square &Square::operator=(Square &&other) noexcept
@@ -24,4 +25,5 @@ Square &Square::operator=(Square &&other) noexcept
         Rectangle& base = *this;
         base = std::move(other);
     }
+    return *this;
 }
