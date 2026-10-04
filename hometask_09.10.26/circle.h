@@ -2,6 +2,7 @@
 
 #include "shape.h"
 
+const double PI = 3.1415926535;
 
 class Circle: public Shape
 {
