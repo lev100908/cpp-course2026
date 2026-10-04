@@ -19,6 +19,6 @@ public:
     Shape&& operator=(Shape&& other) noexcept;
 
     const std::string& getName() const;
-    double area() const;
-    double perimeter() const;
+    virtual double area() const;
+    virtual double perimeter() const;
 };
