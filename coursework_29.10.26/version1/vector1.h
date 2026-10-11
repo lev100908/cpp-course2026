@@ -1,11 +1,11 @@
 #pragma once
 
-class Vector {
+class VectorVer1 {
     int size_;
     double* data_;
 public:
-    Vector(int size);
-    ~Vector();
+    VectorVer1(int size);
+    ~VectorVer1();
 
     int size() const;
     double get(int index) const;

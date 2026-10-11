@@ -3,7 +3,7 @@
 #include <stdexcept>
 #include <cstdint>
 
-Vector::Vector(int size) : size_(size), data_(nullptr)
+VectorVer1::VectorVer1(int size) : size_(size), data_(nullptr)
 {
     if (size_ < 0)
         throw std::invalid_argument("Size must be positive.");
@@ -16,17 +16,17 @@ Vector::Vector(int size) : size_(size), data_(nullptr)
     }
 }
 
-Vector::~Vector()
+VectorVer1::~VectorVer1()
 {
     delete[] data_;
 }
 
-int Vector::size() const
+int VectorVer1::size() const
 {
     return size_;
 }
 
-double Vector::get(int index) const
+double VectorVer1::get(int index) const
 {
     if (index < 0 | index >= size_)
         throw std::out_of_range("Vector index out of range");
@@ -34,7 +34,7 @@ double Vector::get(int index) const
     return data_[index];
 }
 
-void Vector::set(int index, double value)
+void VectorVer1::set(int index, double value)
 {
     if (index < 0 | index >= size_)
         throw std::out_of_range("Vector index out of range");
