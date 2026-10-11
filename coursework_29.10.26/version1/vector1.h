@@ -2,7 +2,7 @@
 
 class Vector {
     int size_;
-    double& data_;
+    double* data_;
 public:
     Vector(int size);
     ~Vector();
