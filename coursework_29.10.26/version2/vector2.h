@@ -6,7 +6,7 @@ class VectorVer2 {
     int size_;
     double* data_;
     int check_size(int size); // Check size: if size > 0 return size, else throw error.
-    int check_out_of_range(int index); // Check index for out_of_range_error: if 0 < index < size return index, else throw error.
+    void check_out_of_range(int index) const; // Check index for out_of_range_error: if not 0 < index < size throw error.
 public:
     explicit VectorVer2(int size);
     VectorVer2(std::initializer_list<double> lst);
@@ -17,7 +17,7 @@ public:
     VectorVer2& operator=(const VectorVer2& other);
 
     VectorVer2(VectorVer2&& other);
-    VectorVer2&& operator=(VectorVer2&& other);
+    VectorVer2& operator=(VectorVer2&& other);
 
     double& operator[](int index);
     double operator[](int index) const;
