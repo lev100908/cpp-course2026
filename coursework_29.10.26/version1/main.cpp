@@ -5,7 +5,7 @@
 
 int main() 
 {
-    Vector vec(5);
+    VectorVer1 vec(5);
 
     std::cout << "Vector size: " << vec.size() << std::endl;
 
@@ -21,7 +21,7 @@ int main()
 
     try
     {
-        Vector vec(-5);
+        VectorVer1 vec(-5);
     }
     catch(const std::exception& e)
     {
