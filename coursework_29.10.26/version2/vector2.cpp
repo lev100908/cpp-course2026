@@ -2,11 +2,11 @@
 
 #include <stdexcept>
 #include <algorithm>
-
+#include <iostream>
 
 int VectorVer2::check_size(int size)
 {
-    if (size_ < 0)
+    if (size < 0)
         throw std::invalid_argument("Size must be positive.");
     return size;
 }
