@@ -25,7 +25,7 @@ VectorVer2::VectorVer2(int size) : size_(check_size(size)), data_(new double[siz
     }
 }
 
-VectorVer2::VectorVer2(std::initializer_list<double> lst)
+VectorVer2::VectorVer2(std::initializer_list<double> lst) : size_(lst.size()) , data_(new double[lst.size()])
 {
     std::copy(lst.begin(), lst.end(), data_);
 }
