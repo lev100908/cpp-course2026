@@ -23,6 +23,7 @@ public:
     Student& operator=(Student&& other) noexcept;
 
     void addMark(int mark);
+    void addMark(int mark, int quantity);
     const std::vector<int>& getMarks() const;
     double getAverageScore() const;
     friend std::ostream& operator<<(std::ostream& stream, const Student& rhs);

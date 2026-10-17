@@ -55,6 +55,15 @@ void Student::addMark(int mark)
     upgradeAverageScore();
 }
 
+void Student::addMark(int mark, int quantity)
+{
+    for (std::size_t i = 0; i < quantity; ++i)
+    {
+        addMark(mark);
+    }
+    
+}
+
 const std::vector<int> &Student::getMarks() const
 {
     return marks_;
