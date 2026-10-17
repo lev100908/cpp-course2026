@@ -23,9 +23,9 @@ public:
     Student& operator=(Student&& other) noexcept;
 
     void addMark(int mark);
-    std::vector<std::string>& getMarks() const;
+    const std::vector<int>& getMarks() const;
     double getAverageScore() const;
+    friend std::ostream& operator<<(std::ostream& stream, const Student& rhs);
 };
 
 bool operator<(const Student& lhs, const Student& rhs);
-std::ofstream& operator<<(std::ofstream& stream, const Student& rhs);
