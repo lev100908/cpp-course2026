@@ -8,6 +8,7 @@ private:
     std::string name_;
     std::string group_;
     std::vector<int> marks_;
+    double sum_marks_;
     double averageScore_;
     void upgradeAverageScore();
 

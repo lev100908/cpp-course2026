@@ -3,11 +3,12 @@
 
 void Student::upgradeAverageScore()
 {
-    double sum_marks = 0;
-    for (int mark: marks_)
-        sum_marks += mark;
-    
-    averageScore_ = sum_marks / marks_.size();
+    int marks_quantity = marks_.size();
+
+    if (marks_quantity > 0)
+    {
+    averageScore_ = sum_marks_ / marks_quantity;
+    }
 }
 
 Student::Student(std::string name, std::string group) : name_(name), group_(group), averageScore_(0.0) {}
@@ -52,16 +53,15 @@ Student &Student::operator=(Student &&other) noexcept
 void Student::addMark(int mark)
 {
     marks_.push_back(mark);
+    sum_marks_ += mark;
     upgradeAverageScore();
 }
 
 void Student::addMark(int mark, int quantity)
 {
-    for (std::size_t i = 0; i < quantity; ++i)
-    {
-        addMark(mark);
-    }
-    
+    marks_.insert(marks_.end(), quantity, mark);
+    sum_marks_ += mark * quantity;
+    upgradeAverageScore();
 }
 
 const std::vector<int> &Student::getMarks() const
