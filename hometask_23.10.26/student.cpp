@@ -8,21 +8,22 @@ void Student::upgradeAverageScore()
 
     if (marks_quantity > 0)
     {
-    averageScore_ = sum_marks_ / marks_quantity;
+        averageScore_ = sum_marks_ / marks_quantity;
     }
 }
 
-Student::Student(std::string name, std::string group) : name_(name), group_(group), averageScore_(0.0) {}
+Student::Student(std::string name, std::string group) : name_(name), group_(group), averageScore_(0.0), sum_marks_(0.0) {}
 
 Student::~Student() = default;
 
 Student::Student(const Student &other) : 
-    name_(other.name_), group_(other.group_), marks_(other.marks_), averageScore_(other.averageScore_) {}
+    name_(other.name_), group_(other.group_), marks_(other.marks_), averageScore_(other.averageScore_), sum_marks_(other.sum_marks_) {}
 
 Student::Student(Student &&other) :
-    name_(std::move(other.name_)), group_(std::move(other.group_)), marks_(std::move(other.marks_)), averageScore_(other.averageScore_)
+    name_(std::move(other.name_)), group_(std::move(other.group_)), marks_(std::move(other.marks_)), averageScore_(other.averageScore_), sum_marks_(other.sum_marks_)
 {
-    other.averageScore_ = 0;
+    other.averageScore_ = 0.0;
+    other.sum_marks_ = 0.0;
 }
 Student &Student::operator=(const Student &other) 
 {
@@ -32,6 +33,7 @@ Student &Student::operator=(const Student &other)
         group_ = other.group_;
         marks_ = other.marks_;
         averageScore_ = other.averageScore_;
+        sum_marks_ = other.sum_marks_;
     }
 
     return *this;    
@@ -44,8 +46,11 @@ Student &Student::operator=(Student &&other) noexcept
         name_ = std::move(other.name_);
         group_ = std::move(other.group_);
         marks_ = std::move(other.marks_);
-        averageScore_ = std::move(other.averageScore_);
-        other.averageScore_ = 0;
+        averageScore_ = other.averageScore_;
+        sum_marks_ = other.sum_marks_;
+
+        other.averageScore_ = 0.0;
+        other.sum_marks_ = 0.0;
     }
 
     return *this;  
@@ -60,13 +65,13 @@ void Student::addMark(int mark)
 
 void Student::addMark(int mark, int quantity)
 {
-    if (quantity > 0)
-    {
-       marks_.insert(marks_.end(), quantity, mark);
-        sum_marks_ += mark * quantity;
-        upgradeAverageScore();
-    }
-    throw std::invalid_argument("Quantity must be positive.");
+    if (quantity <= 0)
+        throw std::invalid_argument("Quantity must be positive.");
+
+    marks_.insert(marks_.end(), quantity, mark);
+    sum_marks_ += mark * quantity;
+    upgradeAverageScore();
+
 }
 
 const std::vector<int> &Student::getMarks() const
