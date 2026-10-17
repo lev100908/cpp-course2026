@@ -28,6 +28,9 @@ public:
     const std::vector<int>& getMarks() const;
     double getAverageScore() const;
     friend std::ostream& operator<<(std::ostream& stream, const Student& rhs);
+    friend std::ostream& operator<<(std::ostream& stream, const std::vector<Student>& rhs);
 };
 
 bool operator<(const Student& lhs, const Student& rhs);
+
+

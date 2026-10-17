@@ -1,5 +1,6 @@
 #include "student.h"
 #include <iostream>
+#include <stdexcept>
 
 void Student::upgradeAverageScore()
 {
@@ -59,9 +60,13 @@ void Student::addMark(int mark)
 
 void Student::addMark(int mark, int quantity)
 {
-    marks_.insert(marks_.end(), quantity, mark);
-    sum_marks_ += mark * quantity;
-    upgradeAverageScore();
+    if (quantity > 0)
+    {
+       marks_.insert(marks_.end(), quantity, mark);
+        sum_marks_ += mark * quantity;
+        upgradeAverageScore();
+    }
+    throw std::invalid_argument("Quantity must be positive.");
 }
 
 const std::vector<int> &Student::getMarks() const
@@ -85,6 +90,14 @@ std::ostream& operator<<(std::ostream &stream, const Student &rhs)
 
     stream << "\n" << "Average: " << rhs.averageScore_ << std::endl;
 
+    return stream;
+}
+
+std::ostream &operator<<(std::ostream &stream, const std::vector<Student> &rhs)
+{
+    for (Student student : rhs)
+        stream << student.name_ << " ";
+    
     return stream;
 }
 
