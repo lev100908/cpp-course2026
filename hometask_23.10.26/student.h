@@ -7,8 +7,9 @@ class Student
 private:
     std::string name_;
     std::string group_;
-    std::vector<std::string> marks_;
+    std::vector<int> marks_;
     double averageScore_;
+    void upgradeAverageScore();
 
 public:
     Student(std::string name, std::string group);
