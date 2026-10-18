@@ -55,16 +55,16 @@ inline void VectorVer3<T, A>::check_out_of_range(int index) const
 }
 
 template <typename T, typename A>
-inline VectorVer3<T, A>::VectorVer3(int size) : size_(check_size(size)), capacity_(0), data_(nullptr)
+inline VectorVer3<T, A>::VectorVer3(int size) : size_(0), capacity_(0), data_(nullptr)
 {
-    resize(size);
+    resize(check_size(size));
 }
 
 template <typename T, typename A>
-inline VectorVer3<T, A>::VectorVer3(std::initializer_list<T> lst)
+inline VectorVer3<T, A>::VectorVer3(std::initializer_list<T> lst) :
+    size_(0), capacity_(0), data_(nullptr)
 {
-    check_size(lst.size());
-    resize(lst.size());
+    resize(check_size(lst.size()));
     std::copy(lst.begin(), lst.end(), data_);
 }
 
@@ -225,14 +225,14 @@ inline void VectorVer3<T, A>::resize(int new_size, T val)
     reserve(new_size);
 
     // Сужение вектора
-    for (std::size_t i = new_size; i < size; i++) 
+    for (std::size_t i = new_size; i < size_; i++) 
         alloc_.destroy(&data_[i]);
     
     // Расширение вектора
-    for (std::size_t i = size; i < new_size; i++) 
+    for (std::size_t i = size_; i < new_size; i++) 
         alloc_.construct(&data_[i], val);
 
-    size = new_size;
+    size_ = new_size;
     
 }
 
