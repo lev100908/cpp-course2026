@@ -10,8 +10,8 @@ class VectorVer3 {
     int size_;
     int capacity_;
     T* data_;
-    // int check_size(int size); // Check size: if size > 0 return size, else throw error.
-    // void check_out_of_range(int index) const; // Check index for out_of_range_error: if not 0 < index < size throw error.
+    int check_size(int size); // Check size: if size > 0 return size, else throw error.
+    void check_out_of_range(int index) const; // Check index for out_of_range_error: if not 0 < index < size throw error.
 public:
     VectorVer3() : size_(0), capacity_(0), data_(nullptr) {};
     explicit VectorVer3(int size);
@@ -40,16 +40,30 @@ public:
 };
 
 template <typename T, typename A>
-inline VectorVer3<T, A>::VectorVer3(int size) : size_(0), capacity_(0), data_(nullptr)
+inline int VectorVer3<T, A>::check_size(int size)
 {
     if (size < 0)
-        throw std::invalid_argument("Size must be positive.")
+        throw std::invalid_argument("Size must be positive.");
+    return size;
+}
+
+template <typename T, typename A>
+inline void VectorVer3<T, A>::check_out_of_range(int index) const
+{
+    if (index < 0 | index >= size_)
+        throw std::range_error("Index out of range");
+}
+
+template <typename T, typename A>
+inline VectorVer3<T, A>::VectorVer3(int size) : size_(check_size(size)), capacity_(0), data_(nullptr)
+{
     resize(size);
 }
 
 template <typename T, typename A>
 inline VectorVer3<T, A>::VectorVer3(std::initializer_list<T> lst)
 {
+    check_size(lst.size());
     resize(lst.size());
     std::copy(lst.begin(), lst.end(), data_);
 }
@@ -92,7 +106,7 @@ inline VectorVer3<T, A>& VectorVer3<T, A>::operator=(const VectorVer3 &other)
 
     for (std::size_t i = 0; i < size_; i++)
     {
-        alloc_.destroy(&data[i]);
+        alloc_.destroy(&data_[i]);
     }
 
     size_ = 0;
@@ -127,7 +141,7 @@ inline VectorVer3<T, A>& VectorVer3<T, A>::operator=(VectorVer3 &&other)
 
     for (std::size_t i = 0; i < size_; i++)
     {
-        alloc_.destroy(&data[i]);
+        alloc_.destroy(&data_[i]);
     }
 
     alloc_.deallocate(data_, capacity_);
@@ -152,23 +166,21 @@ inline T &VectorVer3<T, A>::operator[](int index)
 template <typename T, typename A>
 inline const T &VectorVer3<T, A>::operator[](int index) const
 {
-    return (*this)[index];
+    return data_[index];
 }
 
 template <typename T, typename A>
 inline T &VectorVer3<T, A>::at(int index)
 {
-    if (index < 0 | index >= size_)
-        throw std::range_error("Index out of range");
+    check_out_of_range(index);
     return (*this)[index];
 }
 
 template <typename T, typename A>
 inline const T &VectorVer3<T, A>::at(int index) const
 {
-    if (index < 0 | index >= size_)
-        throw std::range_error("Index out of range");
-    return data_[index];
+    check_out_of_range(index);
+    return (*this)[index];
 }
 
 template <typename T, typename A>
@@ -208,20 +220,19 @@ inline void VectorVer3<T, A>::reserve(int new_alloc)
 template <typename T, typename A>
 inline void VectorVer3<T, A>::resize(int new_size, T val)
 {
-    if (new_size < 0)
-        throw std::invalid_argument("Size must be positive.")
+    check_size(new_size);
 
-    reserve(size);
+    reserve(new_size);
 
     // Сужение вектора
     for (std::size_t i = new_size; i < size; i++) 
-        alloc_.destroy(&data_[i])
+        alloc_.destroy(&data_[i]);
     
     // Расширение вектора
     for (std::size_t i = size; i < new_size; i++) 
-        alloc_.construct(&data_[i], val)
+        alloc_.construct(&data_[i], val);
 
-    size = new_size
+    size = new_size;
     
 }
 
