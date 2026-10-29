@@ -20,7 +20,7 @@ public:
     VectorVer2& operator=(VectorVer2&& other);
 
     double& operator[](int index);
-    double operator[](int index) const;
+    const double& operator[](int index) const;
 
     int size() const;
     double get(int index) const;

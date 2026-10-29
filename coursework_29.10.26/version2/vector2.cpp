@@ -80,7 +80,7 @@ double &VectorVer2::operator[](int index)
     return data_[index];
 }
 
-double VectorVer2::operator[](int index) const
+const double& VectorVer2::operator[](int index) const
 {
     check_out_of_range(index);
     return data_[index];
