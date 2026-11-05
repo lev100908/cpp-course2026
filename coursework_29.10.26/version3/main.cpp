@@ -2,10 +2,12 @@
 #include "vector3_operators.h"
 #include <iostream>
 #include <string>
+#include <algorithm>
 
 struct WithoutBaseMan
 {
     std::string name_;
+    WithoutBaseMan() = delete;
     WithoutBaseMan(std::string name) : name_(name) {}; 
     friend std::ostream& operator<<(std::ostream& stream, const WithoutBaseMan& rhs)
     {
@@ -35,6 +37,8 @@ int main()
     std::cout << "Capacity vec3 before push_back: " <<  vec3.capacity() << std::endl;
     vec3.push_back("five");
     std::cout << "Capacity vec3 after push_back: " <<  vec3.capacity() << std::endl;
+    std::cout << vec3;
+    std::sort(vec3.begin(), vec3.end());
     std::cout << vec3;
 
     std::cout << "================" << std::endl;

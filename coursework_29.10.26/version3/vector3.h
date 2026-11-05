@@ -6,7 +6,7 @@
 
 template<typename T, typename A = std::allocator<T>>
 class VectorVer3 {
-    std::allocator<T> alloc_;
+    A alloc_;
     int size_;
     int capacity_;
     T* data_;
@@ -37,6 +37,16 @@ public:
     void reserve(int new_alloc);
     void resize(int new_size, T val = T());
     void push_back(const T& val);
+    void pop_back();
+
+    auto begin() 
+    {
+        return data_;
+    }
+    auto end() 
+    {
+        return data_ + size_;
+    };
 };
 
 template <typename T, typename A>
@@ -86,7 +96,7 @@ inline VectorVer3<T, A>::VectorVer3(const VectorVer3 &other)
     if (other.size_ == 0) 
         return;
 
-    data_ = alloc_.allocate(other.size);
+    data_ = alloc_.allocate(other.capacity_);
     capacity_ = other.capacity_;
 
     for (std::size_t i = 0; i < other.size_; i++)
@@ -95,7 +105,6 @@ inline VectorVer3<T, A>::VectorVer3(const VectorVer3 &other)
     }
 
     size_ = other.size_;
-        
 }
 
 template <typename T, typename A>
@@ -111,7 +120,7 @@ inline VectorVer3<T, A>& VectorVer3<T, A>::operator=(const VectorVer3 &other)
 
     size_ = 0;
     
-    reserve(other.size_);
+    reserve(other.capacity_);
 
     for (std::size_t i = 0; i < other.size_; i++)
     {
@@ -246,4 +255,13 @@ inline void VectorVer3<T, A>::push_back(const T &val)
 
     alloc_.construct(&data_[size_], val);
     ++size_;
+}
+
+template <typename T, typename A>
+inline void VectorVer3<T, A>::pop_back()
+{
+    if (size_ == 0)
+        return;
+    
+    alloc_.destroy(&data_[--size_]);
 }

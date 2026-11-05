@@ -37,6 +37,7 @@ VectorVer2::~VectorVer2()
 
 VectorVer2::VectorVer2(const VectorVer2 &other) : size_(other.size_), data_(new double[other.size_]) 
 {
+    std::cout << "This is copy constructor" << std::endl;
     std::copy(other.data_, other.data_ + size_, data_);
 }
 
@@ -56,6 +57,7 @@ VectorVer2 &VectorVer2::operator=(const VectorVer2 &other)
 
 VectorVer2::VectorVer2(VectorVer2 &&other) : size_(other.size_), data_(other.data_)
 {
+    std::cout << "This is move constructor" << std::endl;
     other.size_ = 0;
     other.data_ = nullptr;
 }
